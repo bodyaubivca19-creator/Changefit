@@ -674,7 +674,8 @@
             .sequence-canvas,
             .custom-hidden-canvas,
             .custom-sequence-hidden-canvas {
-                display: none !important;
+                /* ВАЖНО: не display:none, иначе блок схлопывается и model-viewer получает высоту 0 */
+                display: block !important;
                 opacity: 0 !important;
                 visibility: hidden !important;
                 pointer-events: none !important;
@@ -2382,7 +2383,7 @@
                     document
                         .querySelectorAll('canvas[data-load-stage-canvas], canvas[data-sequence-canvas], .stage-canvas, .sequence-canvas')
                         .forEach((el) => {
-                            el.style.setProperty('display', 'none', 'important');
+                            el.style.setProperty('display', 'block', 'important');
                             el.style.setProperty('opacity', '0', 'important');
                             el.style.setProperty('visibility', 'hidden', 'important');
                             el.style.setProperty('pointer-events', 'none', 'important');
