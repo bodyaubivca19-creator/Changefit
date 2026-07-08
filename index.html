@@ -665,6 +665,46 @@
             }
         </style>
 
+
+        <style id="custom-only-changefit-models">
+            /* Полностью отключаем старые Webflow/More canvas-модельки */
+            canvas[data-load-stage-canvas],
+            canvas[data-sequence-canvas],
+            .stage-canvas,
+            .sequence-canvas,
+            .custom-hidden-canvas,
+            .custom-sequence-hidden-canvas {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            /* Главная модель: показываем только локальный/верцельный GLB */
+            .custom-hero-model {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                z-index: 25 !important;
+                pointer-events: none !important;
+            }
+
+            /* Модель в sequence-блоке: только наш cucur.glb */
+            .custom-sequence-model {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                z-index: 1 !important;
+                pointer-events: none !important;
+            }
+
+            /* Боковые модели вкусов */
+            .custom-flavour-side-fixed {
+                display: block !important;
+                pointer-events: none !important;
+            }
+        </style>
+
 </head>
     <body class="body">
         <div class="w-embed">
@@ -2332,6 +2372,35 @@
                 } else {
                     waitForReady();
                 }
+            })();
+        </script>
+
+    
+        <script id="custom-disable-old-more-canvases">
+            (() => {
+                const hideOldCanvases = () => {
+                    document
+                        .querySelectorAll('canvas[data-load-stage-canvas], canvas[data-sequence-canvas], .stage-canvas, .sequence-canvas')
+                        .forEach((el) => {
+                            el.style.setProperty('display', 'none', 'important');
+                            el.style.setProperty('opacity', '0', 'important');
+                            el.style.setProperty('visibility', 'hidden', 'important');
+                            el.style.setProperty('pointer-events', 'none', 'important');
+                        });
+                };
+
+                hideOldCanvases();
+
+                document.addEventListener('DOMContentLoaded', hideOldCanvases);
+                window.addEventListener('load', hideOldCanvases);
+
+                const observer = new MutationObserver(hideOldCanvases);
+                observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['style', 'class']
+                });
             })();
         </script>
 
