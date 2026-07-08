@@ -1159,7 +1159,7 @@
                     <div data-sequence-stage="" class="sequence-sticky">
                         <canvas data-sequence-canvas-img-path="https://morematcha.vercel.app/img/" data-sequence-canvas="" class="sequence-canvas custom-sequence-hidden-canvas"></canvas>
                         <model-viewer
-                            src="/models/cucur.glb"
+                            src="/models/korobka.glb"
                             alt="Cucur product model"
                             class="custom-sequence-model"
                             disable-zoom
@@ -1213,7 +1213,7 @@
                                     lockInteraction();
                                     document.documentElement.classList.add('custom-sequence-model-ready');
                                     startSequenceMotion();
-                                    console.log('Sequence GLB model loaded: /models/cucur.glb');
+                                    console.log('Sequence GLB model loaded: /models/korobka.glb');
                                 };
 
                                 lockInteraction();
@@ -1228,13 +1228,13 @@
                                 model.addEventListener('error', (event) => {
                                     if (rafId) cancelAnimationFrame(rafId);
                                     document.documentElement.classList.remove('custom-sequence-model-ready');
-                                    console.error('Sequence GLB model did not load. Check path: /models/cucur.glb', event);
+                                    console.error('Sequence GLB model did not load. Check path: /models/korobka.glb', event);
                                 });
                             })();
                         </script>
                         <div class="custom-flavour-fixed-layer" aria-hidden="true">
                             <model-viewer
-                                src="/models/mini.glb"
+                                src="/models/2.glb"
                                 alt="Mini flavour model"
                                 class="custom-flavour-side-fixed is-left"
                                 disable-zoom
