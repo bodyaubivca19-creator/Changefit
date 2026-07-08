@@ -885,7 +885,7 @@
 
                                         <!-- Твоя локальная 3D-модель. Путь должен быть относительно index.html. -->
                                         <model-viewer
-                                            src="/models/strawberry.glb"
+                                            src="/public/models/strawberry.glb"
                                             alt="Product model"
                                             class="custom-hero-model"
                                             disable-zoom
@@ -948,7 +948,7 @@
                                                     readyTimer = setTimeout(() => {
                                                         document.documentElement.classList.add('custom-model-ready');
                                                         startSway();
-                                                        console.log('GLB model loaded and swaying: /models/strawberry.glb');
+                                                        console.log('GLB model loaded and swaying: /public/models/strawberry.glb');
                                                     }, SHOW_DELAY_MS);
                                                 };
 
@@ -1159,7 +1159,7 @@
                     <div data-sequence-stage="" class="sequence-sticky">
                         <canvas data-sequence-canvas-img-path="https://morematcha.vercel.app/img/" data-sequence-canvas="" class="sequence-canvas custom-sequence-hidden-canvas"></canvas>
                         <model-viewer
-                            src="/models/korobka.glb"
+                            src="/public/models/korobka.glb"
                             alt="Cucur product model"
                             class="custom-sequence-model"
                             disable-zoom
@@ -1213,7 +1213,7 @@
                                     lockInteraction();
                                     document.documentElement.classList.add('custom-sequence-model-ready');
                                     startSequenceMotion();
-                                    console.log('Sequence GLB model loaded: /models/korobka.glb');
+                                    console.log('Sequence GLB model loaded: /public/models/korobka.glb');
                                 };
 
                                 lockInteraction();
@@ -1228,13 +1228,13 @@
                                 model.addEventListener('error', (event) => {
                                     if (rafId) cancelAnimationFrame(rafId);
                                     document.documentElement.classList.remove('custom-sequence-model-ready');
-                                    console.error('Sequence GLB model did not load. Check path: /models/korobka.glb', event);
+                                    console.error('Sequence GLB model did not load. Check path: /public/models/korobka.glb', event);
                                 });
                             })();
                         </script>
                         <div class="custom-flavour-fixed-layer" aria-hidden="true">
                             <model-viewer
-                                src="/models/2.glb"
+                                src="/public/models/2.glb"
                                 alt="Mini flavour model"
                                 class="custom-flavour-side-fixed is-left"
                                 disable-zoom
@@ -1247,7 +1247,7 @@
                                 tabindex="-1">
                             </model-viewer>
                             <model-viewer
-                                src="/models/strawberry.glb"
+                                src="/public/models/strawberry.glb"
                                 alt="Strawberry flavour model"
                                 class="custom-flavour-side-fixed is-right"
                                 disable-zoom
