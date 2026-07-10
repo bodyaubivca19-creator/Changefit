@@ -806,7 +806,7 @@
                             <div class="nav-text">Отзывы</div>
                         </a>
                     </div>
-                    <a id="w-node-c4e2d712-b9aa-e56d-102b-73576293bdd9-4811c289" href="https://morenutrition.co.uk/products/more-protein-iced-matcha-latte?country=GB&amp;shpxid=9a9ac546-be7d-41d1-b2d0-0e58e2adcb2d" target="_blank" class="button is-white w-inline-block">
+                    <a id="w-node-c4e2d712-b9aa-e56d-102b-73576293bdd9-4811c289" class="button is-white w-inline-block" href="javascript:void(0)" data-disabled-magaz-link="true">
                         <div class="button-cycle is-first">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 10" width="100%" class="button-arrow">
                                 <path fill="currentColor" fill-rule="evenodd" d="M0 1.827 1.71 0H10v8.22L8.11 10V5.93c0-.992.009-1.89.03-2.695l-6.642 6.58-1.316-1.44 6.641-6.58c-.787.022-1.67.032-2.647.032H0Z" clip-rule="evenodd"></path>
@@ -2430,6 +2430,41 @@
                             link.removeAttribute('target');
                             link.removeAttribute('rel');
                             link.setAttribute('data-disabled-buy-link', 'true');
+                        }
+                    });
+                };
+
+                neutralize();
+                document.addEventListener('DOMContentLoaded', neutralize);
+                window.addEventListener('load', neutralize);
+            })();
+        </script>
+
+    
+        <script id="custom-disable-magaz-link">
+            (() => {
+                const isDisabledTextLink = (link) => {
+                    if (!link) return false;
+                    const text = (link.textContent || '').trim().toLowerCase();
+                    return text.includes('магаз');
+                };
+
+                document.addEventListener('click', (event) => {
+                    const link = event.target.closest('a');
+                    if (isDisabledTextLink(link)) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        return false;
+                    }
+                }, true);
+
+                const neutralize = () => {
+                    document.querySelectorAll('a').forEach((link) => {
+                        if (isDisabledTextLink(link)) {
+                            link.setAttribute('href', 'javascript:void(0)');
+                            link.removeAttribute('target');
+                            link.removeAttribute('rel');
+                            link.setAttribute('data-disabled-magaz-link', 'true');
                         }
                     });
                 };
