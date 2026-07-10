@@ -779,17 +779,17 @@
             <div class="nav-container">
                 <div class="grid-layout">
                     <div id="w-node-_084a53a4-1315-9fde-31ee-e99a4811c28c-4811c289" class="nav-social-media-inner">
-                        <a href="https://www.instagram.com/morenutrition.de/" target="_blank" class="social-media-link w-inline-block">
+                        <a class="social-media-link w-inline-block" href="javascript:void(0)" data-disabled-social-link="true">
                             <div class="social-media-circle">
                                 <img src="https://cdn.prod.website-files.com/686c09a33211842a0ac0183d/688651ae6f6e0e5669c9d465_instagram.svg" loading="eager" width="24" height="24" alt="Instagram" class="social-media-icon"/>
                             </div>
                         </a>
-                        <a href="https://www.tiktok.com/@morenutrition.de?lang=de-DE" target="_blank" class="social-media-link w-inline-block">
+                        <a class="social-media-link w-inline-block" href="javascript:void(0)" data-disabled-social-link="true">
                             <div class="social-media-circle">
                                 <img src="https://cdn.prod.website-files.com/686c09a33211842a0ac0183d/688651aeea8f52f9e4d418f2_tiktok.svg" loading="eager" width="24" height="24" alt="TikTok" class="social-media-icon"/>
                             </div>
                         </a>
-                        <a href="https://www.youtube.com/@more_nutrition" target="_blank" class="social-media-link w-inline-block">
+                        <a class="social-media-link w-inline-block" href="javascript:void(0)" data-disabled-social-link="true">
                             <div class="social-media-circle">
                                 <img src="https://cdn.prod.website-files.com/686c09a33211842a0ac0183d/68d40d4b080c864fb3ec6e0f_youtube-svgrepo-com.svg" loading="eager" width="24" height="24" alt="youtube" class="social-media-icon"/>
                             </div>
@@ -2465,6 +2465,51 @@
                             link.removeAttribute('target');
                             link.removeAttribute('rel');
                             link.setAttribute('data-disabled-magaz-link', 'true');
+                        }
+                    });
+                };
+
+                neutralize();
+                document.addEventListener('DOMContentLoaded', neutralize);
+                window.addEventListener('load', neutralize);
+            })();
+        </script>
+
+    
+        <script id="custom-disable-social-links">
+            (() => {
+                const socialMarkers = [
+                    'instagram.com', 'insta', 'instagram', 'инст',
+                    'tiktok.com', 'tiktok', 'tik tok', 'тик ток', 'тикток',
+                    'youtube.com', 'youtu.be', 'youtube', 'ютуб', 'you tube'
+                ];
+
+                const isSocialLink = (link) => {
+                    if (!link) return false;
+                    const href = (link.getAttribute('href') || '').toLowerCase();
+                    const text = (link.textContent || '').trim().toLowerCase();
+                    const label = (link.getAttribute('aria-label') || '').toLowerCase();
+                    const title = (link.getAttribute('title') || '').toLowerCase();
+                    const combined = `${href} ${text} ${label} ${title}`;
+                    return socialMarkers.some((marker) => combined.includes(marker));
+                };
+
+                document.addEventListener('click', (event) => {
+                    const link = event.target.closest('a');
+                    if (isSocialLink(link)) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        return false;
+                    }
+                }, true);
+
+                const neutralize = () => {
+                    document.querySelectorAll('a').forEach((link) => {
+                        if (isSocialLink(link)) {
+                            link.setAttribute('href', 'javascript:void(0)');
+                            link.removeAttribute('target');
+                            link.removeAttribute('rel');
+                            link.setAttribute('data-disabled-social-link', 'true');
                         }
                     });
                 };
